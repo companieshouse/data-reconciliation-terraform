@@ -1,0 +1,10 @@
+aws_bucket = "development-eu-west-2.terraform-state.ch.gov.uk"
+remote_state_bucket = "ch-development-terraform-state-london"
+environment = "tbirds1"
+deploy_to = "development"
+state_prefix = "env:/development"
+aws_profile = "development-eu-west-2"
+ec2_key_pair_name = "chs-tbirds1"
+
+company_count_crontab = "0 0/30 6-17 * * MON-FRI"
+company_collection_crontab = "0 0/30 6-17 * * MON-FRI"
