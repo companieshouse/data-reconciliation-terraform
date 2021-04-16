@@ -59,6 +59,9 @@ resource "aws_ssm_parameter" "secret_parameters" {
 
 locals {
   ecs_task_config = merge({
+    aws_region = var.aws_region
+    service_name = local.service_name
+    name_prefix = local.name_prefix
     jdbc_driver = var.jdbc_driver
     company_count_crontab = var.company_count_crontab
     company_count_oracle = var.company_count_oracle
