@@ -62,14 +62,11 @@ locals {
     aws_region = var.aws_region
     service_name = local.service_name
     name_prefix = local.name_prefix
-    jdbc_driver = var.jdbc_driver
     company_count_crontab = var.company_count_crontab
-    company_count_oracle = var.company_count_oracle
-    company_count_mongodb = var.company_count_mongodb
     company_collection_crontab = var.company_collection_crontab
-    company_collection_oracle = var.company_collection_oracle
-    company_collection_mongodb = var.company_collection_mongodb
-    endpoint_output = var.endpoint_output
+    dsq_officer_collection_crontab = var.dsq_officer_collection_crontab
+    jdbc_driver = var.jdbc_driver
+    endpoint_mongodb_read_preference = var.mongodb_read_preference
     docker_registry = var.docker_registry
     release_version = var.release_version
   }, aws_ssm_parameter.secret_parameters)

@@ -81,38 +81,19 @@ variable "company_collection_crontab" {
   type = string
 }
 
+variable "dsq_officer_collection_crontab" {
+  description = "A crontab expression that will be used to trigger a comparison of disqualified officers."
+  type = string
+}
+
 variable "jdbc_driver" {
   description = "The classname of the JDBC driver that will be used to connect to the database."
   type = string
   default = "com.oracle.OracleDriver"
 }
 
-variable "company_count_oracle" {
-  description = "The endpoint that will be used to obtain a count of corporate bodies from CHIPS DB."
+variable "mongodb_read_preference" {
+  description = "Modifies how MongoDB requests are routed to members of a replica set."
   type = string
-  default = "jdbc:dataSource?outputType=SelectOne"
-}
-
-variable "company_count_mongodb" {
-  description = "The endpoint that will be used to count company profile records in MongoDB."
-  type = string
-  default = "mongodb:mongo?database=company_profile&collection=company_profile&operation=count"
-}
-
-variable "company_collection_oracle" {
-  description = "The endpoint that will be used to obtain a list of incorporation numbers from CHIPS DB."
-  type = string
-  default = "jdbc:dataSource"
-}
-
-variable "company_collection_mongodb" {
-  description = "The endpoint that will be used to retrieve an array of distinct company profile ids from MongoDB."
-  type = string
-  default = "mongodb:mongo?database=company_profile&collection=company_profile&operation=findDistinct"
-}
-
-variable "endpoint_output" {
-  description = "The endpoint that results will be sent to."
-  type = string
-  default = "log:application"
+  default = "SECONDARY_PREFERRED"
 }
