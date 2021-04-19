@@ -65,6 +65,10 @@ locals {
     company_count_crontab = var.company_count_crontab
     company_collection_crontab = var.company_collection_crontab
     dsq_officer_collection_crontab = var.dsq_officer_collection_crontab
+    company_profile_db = var.company_profile_db
+    company_profile_collection = var.company_profile_collection
+    dsq_officer_db = var.dsq_officer_db
+    dsq_officer_collection = var.dsq_officer_collection
     jdbc_driver = var.jdbc_driver
     endpoint_mongodb_read_preference = var.mongodb_read_preference
     docker_registry = var.docker_registry

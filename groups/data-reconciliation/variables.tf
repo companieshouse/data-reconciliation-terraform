@@ -86,6 +86,30 @@ variable "dsq_officer_collection_crontab" {
   type = string
 }
 
+variable "company_profile_db" {
+  description = "The name of the MongoDB database used to store company profile documents."
+  type = string
+  default = "company_profile"
+}
+
+variable "company_profile_collection" {
+  description = "The name of the MongoDB collection used to store company profile documents."
+  type = string
+  default = "company_profile"
+}
+
+variable "dsq_officer_db" {
+  description = "The name of the MongoDB database used to store disqualification documents."
+  type = string
+  default = "disqualifications"
+}
+
+variable "dsq_officer_collection" {
+  description = "The name of the MongoDB collection used to store disqualification documents."
+  type = string
+  default = "disqualifications"
+}
+
 variable "jdbc_driver" {
   description = "The classname of the JDBC driver that will be used to connect to the database."
   type = string
