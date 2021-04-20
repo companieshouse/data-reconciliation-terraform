@@ -47,14 +47,13 @@ data "vault_generic_secret" "secrets" {
   path = "applications/${var.aws_profile}/${var.environment}/${local.stack_fullname}"
 }
 
-resource "aws_ssm_parameter" "secret_parameters" {
-  for_each = data.vault_generic_secret.secrets.data
-    name = "/${local.stack_fullname}/${each.key}"
-    key_id = data.terraform_remote_state.services-stack-configs.outputs.services_stack_configs_kms_key_id
-    description = each.key
-    type = "SecureString"
-    overwrite = "true"
-    value = each.value
+module "secrets" {
+  source = "./module-secrets"
+  stack_name = local.stack_name
+  name_prefix = local.name_prefix
+  environment = var.environment
+  kms_key_id = data.terraform_remote_state.services-stack-configs.outputs.services_stack_configs_kms_key_id
+  secrets = data.vault_generic_secret.secrets.data
 }
 
 locals {
@@ -73,7 +72,7 @@ locals {
     mongodb_read_preference = var.mongodb_read_preference
     docker_registry = var.docker_registry
     release_version = var.release_version
-  })
+  }, module.secrets.secrets_arn_map)
 }
 
 module "ecs-cluster" {
