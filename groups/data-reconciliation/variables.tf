@@ -16,6 +16,11 @@ variable "aws_bucket" {
   type = string
 }
 
+variable "remote_state_bucket" {
+  description = "Alternative bucket used to store the remote state files from ch-service-terraform"
+  type = string
+}
+
 variable "ec2_key_pair_name" {
   description = "The key pair for SSH access to ec2 instances in the clusters."
   type = string
