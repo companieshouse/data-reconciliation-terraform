@@ -118,7 +118,7 @@ variable "dsq_officer_collection" {
 variable "jdbc_driver" {
   description = "The classname of the JDBC driver that will be used to connect to the database."
   type = string
-  default = "com.oracle.OracleDriver"
+  default = "oracle.jdbc.OracleDriver"
 }
 
 variable "mongodb_read_preference" {
