@@ -73,7 +73,7 @@ locals {
     mongodb_read_preference = var.mongodb_read_preference
     docker_registry = var.docker_registry
     release_version = var.release_version
-  }, aws_ssm_parameter.secret_parameters)
+  })
 }
 
 module "ecs-cluster" {
