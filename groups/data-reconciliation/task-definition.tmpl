@@ -1,0 +1,35 @@
+[
+  {
+    "environment": [
+      { "name": "COMPANY_COUNT_CRONTAB", "value": "${company_count_crontab}" },
+      { "name": "COMPANY_COLLECTION_CRONTAB", "value": "${company_collection_crontab}" },
+      { "name": "DSQ_OFFICER_COLLECTION_CRONTAB", "value": "${dsq_officer_collection_crontab}" },
+      { "name": "SPRING_DATASOURCE_DRIVER_CLASS_NAME", "value": "${jdbc_driver}" },
+      { "name": "ENDPOINT_MONGODB_COMPANY_PROFILE_DB_NAME", "value": "${company_profile_db}" },
+      { "name": "ENDPOINT_MONGODB_COMPANY_PROFILE_COLLECTION_NAME", "value": "${company_profile_collection}" },
+      { "name": "ENDPOINT_MONGODB_DSQ_OFFICER_DB_NAME", "value": "${dsq_officer_db}" },
+      { "name": "ENDPOINT_MONGODB_DSQ_OFFICER_COLLECTION_NAME", "value": "${dsq_officer_collection}" },
+      { "name": "ENDPOINT_MONGODB_READ_PREFERENCE", "value": "${mongodb_read_preference}" }
+    ],
+    "name": "${service_name}",
+    "image": "${docker_registry}/${service_name}:${release_version}",
+    "cpu": 1,
+    "memory": 512,
+    "mountPoints": [],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-create-group": "true",
+        "awslogs-region": "${aws_region}",
+        "awslogs-group": "/ecs/${name_prefix}/${service_name}",
+        "awslogs-stream-prefix": "ecs"
+      }
+    },
+    "secrets": [
+      { "name": "SPRING_DATA_MONGODB_URI", "valueFrom": "${data-reconciliation-secret-mongo-url}" },
+      { "name": "SPRING_DATASOURCE_URL", "valueFrom": "${data-reconciliation-secret-oracle-url}" },
+      { "name": "SPRING_DATASOURCE_USERNAME", "valueFrom": "${data-reconciliation-secret-oracle-username}" },
+      { "name": "SPRING_DATASOURCE_PASSWORD", "valueFrom": "${data-reconciliation-secret-oracle-password}" }
+    ]
+  }
+]
