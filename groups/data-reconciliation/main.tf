@@ -64,12 +64,15 @@ locals {
     company_count_crontab = var.company_count_crontab
     company_collection_crontab = var.company_collection_crontab
     dsq_officer_collection_crontab = var.dsq_officer_collection_crontab
+    company_collection_mongo_primary_crontab = var.company_collection_mongo_primary_crontab
     company_profile_db = var.company_profile_db
     company_profile_collection = var.company_profile_collection
     dsq_officer_db = var.dsq_officer_db
     dsq_officer_collection = var.dsq_officer_collection
     jdbc_driver = var.jdbc_driver
     mongodb_read_preference = var.mongodb_read_preference
+    elasticsearch_primary_segments = var.elasticsearch_primary_segments
+    elasticsearch_primary_slice_size = var.elasticsearch_primary_slice_size
     docker_registry = var.docker_registry
     release_version = var.release_version
   }, module.secrets.secrets_arn_map)
