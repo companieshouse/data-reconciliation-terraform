@@ -91,6 +91,11 @@ variable "company_collection_mongo_primary_crontab" {
   type = string
 }
 
+variable "company_collection_mongo_alpha_crontab" {
+  description = "A crontab expression that will be used to trigger a comparison of company numbers between MongoDB and the Elasticsearch alpha index."
+  type = string
+}
+
 variable "dsq_officer_collection_crontab" {
   description = "A crontab expression that will be used to trigger a comparison of disqualified officers."
   type = string
