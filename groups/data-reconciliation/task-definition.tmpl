@@ -14,8 +14,11 @@
       { "name": "ENDPOINT_MONGODB_READ_PREFERENCE", "value": "${mongodb_read_preference}" },
       { "name": "ELASTICSEARCH_PRIMARY_SEGMENTS", "value": "${elasticsearch_primary_segments}" },
       { "name": "ELASTICSEARCH_PRIMARY_SLICE_SIZE", "value": "${elasticsearch_primary_slice_size}" },
+      { "name": "ELASTICSEARCH_PRIMARY_SLICE_FIELD", "value": "${elasticsearch_primary_slice_field}" },
       { "name": "ELASTICSEARCH_ALPHA_SEGMENTS", "value": "${elasticsearch_alpha_segments}" },
-      { "name": "ELASTICSEARCH_ALPHA_SLICE_SIZE", "value": "${elasticsearch_alpha_slice_size}" }
+      { "name": "ELASTICSEARCH_ALPHA_SLICE_SIZE", "value": "${elasticsearch_alpha_slice_size}" },
+      { "name": "ELASTICSEARCH_ALPHA_SLICE_FIELD", "value": "${elasticsearch_alpha_slice_field}" },
+      { "name": "RESULTS_INITIAL_CAPACITY", "value": "${results_initial_capacity}" }
     ],
     "name": "${service_name}",
     "image": "${docker_registry}/${service_name}:${release_version}",

@@ -149,6 +149,12 @@ variable "elasticsearch_primary_slice_size" {
   default = 500
 }
 
+variable "elasticsearch_primary_slice_field" {
+  description = "The field that will be used to construct scrolling search slices."
+  type = string
+  default = "_uid"
+}
+
 variable "elasticsearch_alpha_segments" {
   description = "The number of segments scrolling searches will be split into."
   type = number
@@ -159,4 +165,15 @@ variable "elasticsearch_alpha_slice_size" {
   description = "The number of search results that will be fetched in each search request."
   type = number
   default = 500
+}
+
+variable "elasticsearch_alpha_slice_field" {
+  description = "The field that will be used to construct scrolling search slices."
+  type = string
+  default = "_id"
+}
+
+variable "results_initial_capacity" {
+  description = "The initial size of the collection of results."
+  type = number
 }
