@@ -73,6 +73,8 @@ locals {
     mongodb_read_preference = var.mongodb_read_preference
     elasticsearch_primary_segments = var.elasticsearch_primary_segments
     elasticsearch_primary_slice_size = var.elasticsearch_primary_slice_size
+    elasticsearch_alpha_segments = var.elasticsearch_alpha_segments
+    elasticsearch_alpha_slice_size = var.elasticsearch_alpha_slice_size
     docker_registry = var.docker_registry
     release_version = var.release_version
   }, module.secrets.secrets_arn_map)

@@ -4,6 +4,7 @@
       { "name": "COMPANY_COUNT_CRONTAB", "value": "${company_count_crontab}" },
       { "name": "COMPANY_COLLECTION_CRONTAB", "value": "${company_collection_crontab}" },
       { "name": "COMPANY_COLLECTION_MONGO_PRIMARY_CRONTAB", "value": "${company_collection_mongo_primary_crontab}" },
+      { "name": "COMPANY_COLLECTION_MONGO_ALPHA_CRONTAB", "value": "${company_collection_mongo_alpha_crontab}" },
       { "name": "DSQ_OFFICER_COLLECTION_CRONTAB", "value": "${dsq_officer_collection_crontab}" },
       { "name": "SPRING_DATASOURCE_DRIVER_CLASS_NAME", "value": "${jdbc_driver}" },
       { "name": "ENDPOINT_MONGODB_COMPANY_PROFILE_DB_NAME", "value": "${company_profile_db}" },
@@ -12,7 +13,9 @@
       { "name": "ENDPOINT_MONGODB_DSQ_OFFICER_COLLECTION_NAME", "value": "${dsq_officer_collection}" },
       { "name": "ENDPOINT_MONGODB_READ_PREFERENCE", "value": "${mongodb_read_preference}" },
       { "name": "ELASTICSEARCH_PRIMARY_SEGMENTS", "value": "${elasticsearch_primary_segments}" },
-      { "name": "ELASTICSEARCH_PRIMARY_SLICE_SIZE", "value": "${elasticsearch_primary_slice_size}" }
+      { "name": "ELASTICSEARCH_PRIMARY_SLICE_SIZE", "value": "${elasticsearch_primary_slice_size}" },
+      { "name": "ELASTICSEARCH_ALPHA_SEGMENTS", "value": "${elasticsearch_alpha_segments}" },
+      { "name": "ELASTICSEARCH_ALPHA_SLICE_SIZE", "value": "${elasticsearch_alpha_slice_size}" }
     ],
     "name": "${service_name}",
     "image": "${docker_registry}/${service_name}:${release_version}",
@@ -36,7 +39,11 @@
       { "name": "ELASTICSEARCH_PRIMARY_HOST", "valueFrom": "${data-reconciliation-secret-elasticsearch-primary-host}" },
       { "name": "ELASTICSEARCH_PRIMARY_PORT", "valueFrom": "${data-reconciliation-secret-elasticsearch-primary-port}" },
       { "name": "ELASTICSEARCH_PRIMARY_PROTOCOL", "valueFrom": "${data-reconciliation-secret-elasticsearch-primary-protocol}" },
-      { "name": "ELASTICSEARCH_PRIMARY_INDEX", "valueFrom": "${data-reconciliation-secret-elasticsearch-primary-index}" }
+      { "name": "ELASTICSEARCH_PRIMARY_INDEX", "valueFrom": "${data-reconciliation-secret-elasticsearch-primary-index}" },
+      { "name": "ELASTICSEARCH_ALPHA_HOST", "valueFrom": "${data-reconciliation-secret-elasticsearch-alpha-host}" },
+      { "name": "ELASTICSEARCH_ALPHA_PORT", "valueFrom": "${data-reconciliation-secret-elasticsearch-alpha-port}" },
+      { "name": "ELASTICSEARCH_ALPHA_PROTOCOL", "valueFrom": "${data-reconciliation-secret-elasticsearch-alpha-protocol}" },
+      { "name": "ELASTICSEARCH_ALPHA_INDEX", "valueFrom": "${data-reconciliation-secret-elasticsearch-alpha-index}" }
     ]
   }
 ]

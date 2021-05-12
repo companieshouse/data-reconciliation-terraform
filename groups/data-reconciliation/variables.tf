@@ -143,3 +143,15 @@ variable "elasticsearch_primary_slice_size" {
   type = number
   default = 500
 }
+
+variable "elasticsearch_alpha_segments" {
+  description = "The number of segments scrolling searches will be split into."
+  type = number
+  default = 3
+}
+
+variable "elasticsearch_alpha_slice_size" {
+  description = "The number of search results that will be fetched in each search request."
+  type = number
+  default = 500
+}
