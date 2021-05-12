@@ -86,6 +86,11 @@ variable "company_collection_crontab" {
   type = string
 }
 
+variable "company_collection_mongo_primary_crontab" {
+  description = "A crontab expression that will be used to trigger a comparison of company numbers between MongoDB and the Elasticsearch primary index."
+  type = string
+}
+
 variable "dsq_officer_collection_crontab" {
   description = "A crontab expression that will be used to trigger a comparison of disqualified officers."
   type = string
@@ -125,4 +130,16 @@ variable "mongodb_read_preference" {
   description = "Modifies how MongoDB requests are routed to members of a replica set."
   type = string
   default = "SECONDARY_PREFERRED"
+}
+
+variable "elasticsearch_primary_segments" {
+  description = "The number of segments scrolling searches will be split into."
+  type = number
+  default = 3
+}
+
+variable "elasticsearch_primary_slice_size" {
+  description = "The number of search results that will be fetched in each search request."
+  type = number
+  default = 500
 }
