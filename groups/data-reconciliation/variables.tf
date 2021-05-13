@@ -177,13 +177,3 @@ variable "results_initial_capacity" {
   description = "The initial size of the collection of results."
   type = number
 }
-
-variable "task_cpu" {
-  description = "The number of CPU units that will be allocated to the data reconciliation ECS task."
-  type = number
-}
-
-variable "task_memory" {
-  description = "The amount of memory (in MiB) that will be allocated to the data reconciliation ECS task."
-  type = number
-}
