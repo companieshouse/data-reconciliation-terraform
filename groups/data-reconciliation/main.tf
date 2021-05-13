@@ -120,6 +120,9 @@ resource "aws_security_group" "data-reconciliation-security-group" {
 resource "aws_ecs_task_definition" "data-reconciliation-task-definition" {
   family = local.ecs_service_name
   execution_role_arn = module.ecs-cluster.ecs_task_execution_role_arn
+  cpu = var.task_cpu
+  memory = var.task_memory
+  requires_compatibilities = ["FARGATE"]
   container_definitions = templatefile(local.task_config_file, local.ecs_task_config)
 }
 
@@ -128,4 +131,5 @@ resource "aws_ecs_service" "data-reconciliation-ecs-service" {
   cluster = module.ecs-cluster.ecs_cluster_id
   task_definition = aws_ecs_task_definition.data-reconciliation-task-definition.arn
   desired_count = 1
+  launch_type = "FARGATE"
 }
