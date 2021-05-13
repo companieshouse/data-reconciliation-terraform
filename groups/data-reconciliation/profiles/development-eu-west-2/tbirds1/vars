@@ -13,6 +13,3 @@ company_collection_mongo_primary_crontab = "0 0/30 6-17 * * MON-FRI"
 company_collection_mongo_alpha_crontab = "0 0/30 6-17 * * MON-FRI"
 
 results_initial_capacity = 5000000
-
-task_cpu = 512
-task_memory = 4096

@@ -29,7 +29,7 @@ variable "ec2_key_pair_name" {
 variable "ec2_instance_type" {
   description = "The instance type for ec2 instances in the clusters."
   type = string
-  default = "t3.medium"
+  default = "t3.large"
 }
 
 variable "ec2_image_id" {
@@ -175,15 +175,5 @@ variable "elasticsearch_alpha_slice_field" {
 
 variable "results_initial_capacity" {
   description = "The initial size of the collection of results."
-  type = number
-}
-
-variable "task_cpu" {
-  description = "The number of CPU units that will be allocated to the data reconciliation ECS task."
-  type = number
-}
-
-variable "task_memory" {
-  description = "The amount of memory (in MiB) that will be allocated to the data reconciliation ECS task."
   type = number
 }
