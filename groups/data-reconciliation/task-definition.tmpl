@@ -22,6 +22,9 @@
     ],
     "name": "${service_name}",
     "image": "${docker_registry}/${service_name}:${release_version}",
+    "cpu": 1,
+    "memory": 4096,
+    "mountPoints": [],
     "logConfiguration": {
       "logDriver": "awslogs",
       "options": {

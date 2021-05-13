@@ -29,7 +29,7 @@ variable "ec2_key_pair_name" {
 variable "ec2_instance_type" {
   description = "The instance type for ec2 instances in the clusters."
   type = string
-  default = "t3.large"
+  default = "z1d.large"
 }
 
 variable "ec2_image_id" {
