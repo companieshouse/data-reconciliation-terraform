@@ -88,6 +88,7 @@ locals {
     email_application_id = var.email_application_id
     email_message_id = var.email_message_id
     email_message_type = var.email_message_type
+    results_expiry_time_in_millis = var.results_expiry_time_in_millis
     docker_registry = var.docker_registry
     release_version = var.release_version
   }, module.secrets.secrets_arn_map)

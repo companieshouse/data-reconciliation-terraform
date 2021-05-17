@@ -12,4 +12,5 @@ dsq_officer_collection_crontab = "0 0/30 6-17 * * MON-FRI"
 company_collection_mongo_primary_crontab = "0 0/30 6-17 * * MON-FRI"
 company_collection_mongo_alpha_crontab = "0 0/30 6-17 * * MON-FRI"
 
-results_initial_capacity = 5000000
+results_initial_capacity = 1000000
+results_expiry_time_in_minutes = 1800000
