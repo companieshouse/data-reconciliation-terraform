@@ -177,3 +177,26 @@ variable "results_initial_capacity" {
   description = "The initial size of the collection of results."
   type = number
 }
+
+variable "email_application_id" {
+  description = "The application ID used by chs-notification-api to render a template containing comparison results."
+  type = string
+  default = "data_reconciliation.data_reconciliation_email"
+}
+
+variable "email_message_id" {
+  description = "The message ID used by chs-notification-api to render a template containing comparison results."
+  type = string
+  default = "data_reconciliation_email_results"
+}
+
+variable "email_message_type" {
+  description = "The message type used by chs-notification-api to render a template containing comparison results."
+  type = string
+  default = "data_reconciliation_email_results"
+}
+
+variable "results_expiry_time_in_millis" {
+  description = "The duration in milliseconds after which results uploaded to S3 can no longer be accessed."
+  type = number
+}

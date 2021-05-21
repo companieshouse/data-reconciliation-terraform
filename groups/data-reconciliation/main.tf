@@ -56,6 +56,11 @@ module "secrets" {
   secrets = data.vault_generic_secret.secrets.data
 }
 
+resource "aws_s3_bucket" "data-reconciliation-bucket" {
+  bucket = local.name_prefix
+  acl = "private"
+}
+
 locals {
   ecs_task_config = merge({
     aws_region = var.aws_region
@@ -79,6 +84,11 @@ locals {
     elasticsearch_alpha_slice_size = var.elasticsearch_alpha_slice_size
     elasticsearch_alpha_slice_field = var.elasticsearch_alpha_slice_field
     results_initial_capacity = var.results_initial_capacity
+    results_bucket = local.name_prefix
+    email_application_id = var.email_application_id
+    email_message_id = var.email_message_id
+    email_message_type = var.email_message_type
+    results_expiry_time_in_millis = var.results_expiry_time_in_millis
     docker_registry = var.docker_registry
     release_version = var.release_version
   }, module.secrets.secrets_arn_map)

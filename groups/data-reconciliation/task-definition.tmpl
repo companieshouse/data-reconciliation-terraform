@@ -18,7 +18,12 @@
       { "name": "ELASTICSEARCH_ALPHA_SEGMENTS", "value": "${elasticsearch_alpha_segments}" },
       { "name": "ELASTICSEARCH_ALPHA_SLICE_SIZE", "value": "${elasticsearch_alpha_slice_size}" },
       { "name": "ELASTICSEARCH_ALPHA_SLICE_FIELD", "value": "${elasticsearch_alpha_slice_field}" },
-      { "name": "RESULTS_INITIAL_CAPACITY", "value": "${results_initial_capacity}" }
+      { "name": "RESULTS_INITIAL_CAPACITY", "value": "${results_initial_capacity}" },
+      { "name": "RESULTS_BUCKET", "value": "${results_bucket}" },
+      { "name": "EMAIL_APPLICATION_ID", "value": "${email_application_id}" },
+      { "name": "EMAIL_MESSAGE_ID", "value": "${email_message_id}" },
+      { "name": "EMAIL_MESSAGE_TYPE", "value": "${email_message_type}" },
+      { "name": "RESULTS_EXPIRY_TIME_IN_MILLIS", "value": "${results_expiry_time_in_millis}" }
     ],
     "name": "${service_name}",
     "image": "${docker_registry}/${service_name}:${release_version}",
@@ -46,7 +51,14 @@
       { "name": "ELASTICSEARCH_ALPHA_HOST", "valueFrom": "${data-reconciliation-secret-elasticsearch-alpha-host}" },
       { "name": "ELASTICSEARCH_ALPHA_PORT", "valueFrom": "${data-reconciliation-secret-elasticsearch-alpha-port}" },
       { "name": "ELASTICSEARCH_ALPHA_PROTOCOL", "valueFrom": "${data-reconciliation-secret-elasticsearch-alpha-protocol}" },
-      { "name": "ELASTICSEARCH_ALPHA_INDEX", "valueFrom": "${data-reconciliation-secret-elasticsearch-alpha-index}" }
+      { "name": "ELASTICSEARCH_ALPHA_INDEX", "valueFrom": "${data-reconciliation-secret-elasticsearch-alpha-index}" },
+      { "name": "EMAIL_RECIPIENT_LIST", "valueFrom": "${data-reconciliation-secret-email-recipient-list}" },
+      { "name": "EMAIL_SENDER", "valueFrom": "${data-reconciliation-secret-email-sender}" },
+      { "name": "SCHEMA_REGISTRY_URL", "valueFrom": "${data-reconciliation-schema-registry-url}" },
+      { "name": "KAFKA_BROKER_ADDR", "valueFrom": "${data-reconciliation-secret-kafka-broker-addr}" },
+      { "name": "AWS_ACCESS_KEY_ID", "valueFrom": "${data-reconciliation-secret-aws-access-key-id}"},
+      { "name": "AWS_SECRET_ACCESS_KEY", "valueFrom": "${data-reconciliation-secret-aws-secret-access-key}"},
+      { "name": "AWS_REGION", "valueFrom": "${data-reconciliation-secret-aws-region}"}
     ]
   }
 ]
