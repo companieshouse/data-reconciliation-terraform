@@ -101,6 +101,11 @@ variable "dsq_officer_collection_crontab" {
   type = string
 }
 
+variable "company_name_mongo_primary_crontab" {
+  description = "A crontab expression that will be used to trigger a comparison of company names between MongoDB and the Elasticsearch primary index."
+  type = string
+}
+
 variable "company_profile_db" {
   description = "The name of the MongoDB database used to store company profile documents."
   type = string

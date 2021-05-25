@@ -71,6 +71,7 @@ locals {
     dsq_officer_collection_crontab = var.dsq_officer_collection_crontab
     company_collection_mongo_primary_crontab = var.company_collection_mongo_primary_crontab
     company_collection_mongo_alpha_crontab = var.company_collection_mongo_alpha_crontab
+    company_name_mongo_primary_crontab = var.company_name_mongo_primary_crontab
     company_profile_db = var.company_profile_db
     company_profile_collection = var.company_profile_collection
     dsq_officer_db = var.dsq_officer_db
