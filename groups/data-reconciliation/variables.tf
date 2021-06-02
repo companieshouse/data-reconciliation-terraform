@@ -116,6 +116,11 @@ variable "company_status_mongo_primary_crontab" {
   type = string
 }
 
+variable "company_status_mongo_alpha_crontab" {
+  description = "A crontab expression that will be used to trigger a comparison of company statuses between MongoDB and the Elasticsearch alpha index."
+  type = string
+}
+
 variable "company_profile_db" {
   description = "The name of the MongoDB database used to store company profile documents."
   type = string
