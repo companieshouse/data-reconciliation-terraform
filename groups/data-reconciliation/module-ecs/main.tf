@@ -24,7 +24,7 @@ resource "aws_ecs_task_definition" "data-reconciliation-task-definition" {
   family = "tbirds1-data-reconciliation"
   execution_role_arn = var.role_arn
   task_role_arn = var.role_arn
-  container_definitions = templatefile(var.template_file, var.task_definition_parameters)
+  container_definitions = templatefile("${path.module}/task-definition.tmpl", var.task_definition_parameters)
   network_mode = "awspvc"
   requires_compatibilities = ["FARGATE"]
   cpu = var.cpu_units

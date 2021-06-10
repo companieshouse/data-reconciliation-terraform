@@ -3,14 +3,9 @@ variable "role_arn" {
   type        = string
 }
 
-variable "template_file" {
-  description = "The file that will be used to create an ECS task definition"
-  type        = string
-}
-
 variable "task_definition_parameters" {
   description = "Environment variables and container properties for ECS task definition"
-  type        = map
+  type        = map(any)
 }
 
 variable "cpu_units" {
