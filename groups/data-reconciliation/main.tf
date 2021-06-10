@@ -98,7 +98,7 @@ locals {
   }, module.secrets.secrets_arn_map)
 }
 
-module "ecs-cluster" {
+  module "ecs-cluster" {
   source = "git::git@github.com:companieshouse/terraform-library-ecs-cluster.git?ref=1.1.1"
   stack_name = local.stack_name
   name_prefix = local.name_prefix
