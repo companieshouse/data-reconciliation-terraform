@@ -220,3 +220,23 @@ variable "results_expiry_time_in_millis" {
   description = "The duration in milliseconds after which results uploaded to S3 can no longer be accessed."
   type = number
 }
+
+variable "cpu_units" {
+  description = "The number of AWS CPU units (as defined as by the ECS docs)"
+  type = number
+}
+
+variable "memory" {
+  description = "The memory in megabytes"
+  type = number
+}
+
+variable "startup_expression" {
+  description = "A cron expression indicating when the ECS task definition should be started"
+  type = string
+}
+
+variable "shutdown_expression" {
+  description = "A cron expression indicating when the ECS task definition should be stopped"
+  type = string
+}

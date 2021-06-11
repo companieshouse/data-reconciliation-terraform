@@ -98,48 +98,25 @@ locals {
   }, module.secrets.secrets_arn_map)
 }
 
-  module "ecs-cluster" {
-  source = "git::git@github.com:companieshouse/terraform-library-ecs-cluster.git?ref=1.1.1"
-  stack_name = local.stack_name
-  name_prefix = local.name_prefix
-  environment = var.environment
-  vpc_id = data.terraform_remote_state.networks.outputs.vpc_id
-  subnet_ids = data.terraform_remote_state.networks.outputs.application_ids
-  ec2_key_pair_name = var.ec2_key_pair_name
-  ec2_instance_type = var.ec2_instance_type
-  ec2_image_id = var.ec2_image_id
-  asg_max_instance_count = 1
-  asg_min_instance_count = 1
-  asg_desired_instance_count = 1
+module "data-reconcilliation-iam" {
+  source = "./module-iam"
 }
 
-resource "aws_security_group" "data-reconciliation-security-group" {
-  name = local.security_group_name
-  description = "Security group for data reconciliation"
-  egress {
-    from_port = 0
-    to_port = 0
-    protocol = "-1"
-    cidr_blocks = [
-      "0.0.0.0/0"
-    ]
-  }
-  tags = {
-    Name = local.security_group_name
-    Environment = var.environment
-    Service = local.stack_name
-  }
+module "data-reconcilliation-ecs" {
+  source = "./module-ecs"
+  role_arn = module.data-reconcilliation-iam.task_execution_role_arn
+  task_definition_parameters = local.ecs_task_config
+  cpu_units = var.cpu_units
+  memory = var.memory
 }
 
-resource "aws_ecs_task_definition" "data-reconciliation-task-definition" {
-  family = local.ecs_service_name
-  execution_role_arn = module.ecs-cluster.ecs_task_execution_role_arn
-  container_definitions = templatefile(local.task_config_file, local.ecs_task_config)
-}
-
-resource "aws_ecs_service" "data-reconciliation-ecs-service" {
-  name = local.ecs_service_name
-  cluster = module.ecs-cluster.ecs_cluster_id
-  task_definition = aws_ecs_task_definition.data-reconciliation-task-definition.arn
-  desired_count = 1
+module "data-reconcilliation-cloudwatch" {
+  source = "./module-cloudwatch"
+  role_arn = module.data-reconcilliation-iam.event_target_role_arn
+  startup_expression = var.startup_expression
+  shutdown_expression = var.shutdown_expression
+  ecs_cluster_arn = module.data-reconcilliation-ecs.ecs_cluster_arn
+  ecs_task_arn = module.data-reconcilliation-ecs.ecs_task_definition_arn
+  security_groups = [module.data-reconcilliation-ecs.security_group_arn]
+  subnets = data.terraform_remote_state.networks.outputs.application_ids
 }
