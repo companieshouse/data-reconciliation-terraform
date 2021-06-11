@@ -76,48 +76,48 @@ variable "vault_password" {
 }
 
 # App configuration
-variable "company_count_crontab" {
-  description = "A crontab expression that will be used to trigger a comparison of company counts."
+variable "company_count_delay" {
+  description = "A timer delay after which a comparison of company counts will be triggered."
   type = string
 }
 
-variable "company_collection_crontab" {
-  description = "A crontab expression that will be used to trigger a comparison of company numbers."
+variable "company_number_mongo_oracle_delay" {
+  description = "A timer delay after which a comparison of company numbers will be triggered."
   type = string
 }
 
-variable "company_collection_mongo_primary_crontab" {
-  description = "A crontab expression that will be used to trigger a comparison of company numbers between MongoDB and the Elasticsearch primary index."
+variable "company_number_mongo_primary_delay" {
+  description = "A timer delay after which a comparison of company numbers between MongoDB and the Elasticsearch primary index will be triggered."
   type = string
 }
 
-variable "company_collection_mongo_alpha_crontab" {
-  description = "A crontab expression that will be used to trigger a comparison of company numbers between MongoDB and the Elasticsearch alpha index."
+variable "company_number_mongo_alpha_delay" {
+  description = "A timer delay after which a comparison of company numbers between MongoDB and the Elasticsearch alpha index will be triggered."
   type = string
 }
 
-variable "dsq_officer_collection_crontab" {
-  description = "A crontab expression that will be used to trigger a comparison of disqualified officers."
+variable "disqualification_delay" {
+  description = "A timer delay after which a comparison of disqualified officers will be triggered."
   type = string
 }
 
-variable "company_name_mongo_primary_crontab" {
-  description = "A crontab expression that will be used to trigger a comparison of company names between MongoDB and the Elasticsearch primary index."
+variable "company_name_mongo_primary_delay" {
+  description = "A timer delay after which a comparison of company names between MongoDB and the Elasticsearch primary index wil be triggered."
   type = string
 }
 
-variable "company_name_mongo_alpha_crontab" {
-  description = "A crontab expression that will be used to trigger a comparison of company names between MongoDB and the Elasticsearch alpha index."
+variable "company_name_mongo_alpha_delay" {
+  description = "A timer delay after which a comparison of company names between MongoDB and the Elasticsearch alpha index will be triggered."
   type = string
 }
 
-variable "company_status_mongo_primary_crontab" {
-  description = "A crontab expression that will be used to trigger a comparison of company statuses between MongoDB and the Elasticsearch primary index."
+variable "company_status_mongo_primary_delay" {
+  description = "A timer delay after which a comparison of company statuses between MongoDB and the Elasticsearch primary index will be triggered."
   type = string
 }
 
-variable "company_status_mongo_alpha_crontab" {
-  description = "A crontab expression that will be used to trigger a comparison of company statuses between MongoDB and the Elasticsearch alpha index."
+variable "company_status_mongo_alpha_delay" {
+  description = "A timer delay after which a comparison of company statuses between MongoDB and the Elasticsearch alpha index will be triggered."
   type = string
 }
 
