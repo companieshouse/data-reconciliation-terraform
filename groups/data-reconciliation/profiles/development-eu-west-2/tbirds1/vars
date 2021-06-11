@@ -4,7 +4,10 @@ environment = "tbirds1"
 deploy_to = "development"
 state_prefix = "env:/development"
 aws_profile = "development-eu-west-2"
-ec2_key_pair_name = "chs-tbirds1"
+cpu_units = 1024
+memory = 8192
+startup_expression = "cron(0 0 6-17 * * MON-FRI)"
+shutdown_expression = "cron(0 30 6-17 * * MON-FRI)"
 
 company_count_delay = "0"
 company_number_mongo_oracle_delay = "30s"

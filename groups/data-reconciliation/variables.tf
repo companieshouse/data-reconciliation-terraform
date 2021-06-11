@@ -21,23 +21,6 @@ variable "remote_state_bucket" {
   type = string
 }
 
-variable "ec2_key_pair_name" {
-  description = "The key pair for SSH access to ec2 instances in the clusters."
-  type = string
-}
-
-variable "ec2_instance_type" {
-  description = "The instance type for ec2 instances in the clusters."
-  type = string
-  default = "z1d.large"
-}
-
-variable "ec2_image_id" {
-  description = "The machine image name for the ECS cluster launch configuration."
-  type = string
-  default = "ami-007ef488b3574da6b"
-}
-
 # Deployment
 variable "environment" {
   description = "The environment this stack will be created for."

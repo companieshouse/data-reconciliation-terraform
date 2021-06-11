@@ -1,11 +1,11 @@
 # IAM roles for ecs resources
 resource "aws_iam_role" "ecs-role" {
-  name = "data-reconciliation-tbirds1"
+  name = "${var.deployment_name}-ecs"
   assume_role_policy = data.aws_iam_policy_document.ecs-policy.json
 }
 
 resource "aws_iam_policy" "ecs-permissions" {
-  name = "data-reconciliation-tbirds1-all"
+  name = "${var.deployment_name}-ecs"
   policy = data.aws_iam_policy_document.ecs-permissions.json
 }
 
@@ -47,12 +47,12 @@ data "aws_iam_policy_document" "ecs-policy" {
 
 # IAM roles for cloudwatch events
 resource "aws_iam_role" "cloudwatch-role" {
-  name = "data-reconciliation-tbirds1"
+  name = "${var.deployment_name}-cloudwatch"
   assume_role_policy = data.aws_iam_policy_document.cloudwatch-policy.json
 }
 
 resource "aws_iam_policy" "cloudwatch-permissions" {
-  name = "data-reconciliation-tbirds1-all"
+  name = "${var.deployment_name}-cloudwatch"
   policy = data.aws_iam_policy_document.cloudwatch-permissions.json
 }
 

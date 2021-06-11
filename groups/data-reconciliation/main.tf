@@ -17,12 +17,11 @@ terraform {
 }
 
 locals {
-  stack_name = "data-reconciliation"
+  stack_name = "data-reconciliation" # the service name
   stack_fullname = "${local.stack_name}-stack"
   security_group_name = "${local.stack_name}-ecs"
   ecs_service_name = "${var.environment}-${local.stack_name}"
   name_prefix = "${local.stack_name}-${var.environment}"
-  task_config_file = "${path.root}/task-definition.tmpl"
 }
 
 data "terraform_remote_state" "networks" {
@@ -100,6 +99,7 @@ locals {
 
 module "data-reconcilliation-iam" {
   source = "./module-iam"
+  deployment_name = local.ecs_service_name
 }
 
 module "data-reconcilliation-ecs" {
@@ -108,6 +108,10 @@ module "data-reconcilliation-ecs" {
   task_definition_parameters = local.ecs_task_config
   cpu_units = var.cpu_units
   memory = var.memory
+  security_group_name = local.security_group_name
+  application_name = local.stack_name
+  deployment_name = local.ecs_service_name
+  environment = var.environment
 }
 
 module "data-reconcilliation-cloudwatch" {
@@ -118,5 +122,9 @@ module "data-reconcilliation-cloudwatch" {
   ecs_cluster_arn = module.data-reconcilliation-ecs.ecs_cluster_arn
   ecs_task_arn = module.data-reconcilliation-ecs.ecs_task_definition_arn
   security_groups = [module.data-reconcilliation-ecs.security_group_arn]
-  subnets = data.terraform_remote_state.networks.outputs.application_ids
+  subnets = split(",", data.terraform_remote_state.networks.outputs.application_ids)
+  application_name = local.stack_name
+  deployment_name = local.ecs_service_name
+  environment = var.environment
+  security_group_name = local.security_group_name
 }

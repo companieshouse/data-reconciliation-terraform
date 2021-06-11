@@ -1,5 +1,5 @@
 resource "aws_security_group" "data-reconciliation-security-group" {
-  name = "data-reconciliation-ecs"
+  name = var.security_group_name
   description = "Security group for data reconciliation"
   egress {
     from_port = 0
@@ -10,23 +10,23 @@ resource "aws_security_group" "data-reconciliation-security-group" {
     ]
   }
   tags = {
-    Name = "data-reconciliation-ecs"
-    Environment = "tbirds1"
-    Service = "data-reconciliation"
+    Name = var.security_group_name
+    Environment = var.environment
+    Service = var.application_name
   }
 }
 
 resource "aws_ecs_cluster" "ecs-cluster" {
-  name = "data-reconciliation-tbirds1-cluster"
+  name = var.deployment_name
 }
 
 resource "aws_ecs_task_definition" "data-reconciliation-task-definition" {
-  family = "tbirds1-data-reconciliation"
+  family = var.deployment_name
   execution_role_arn = var.role_arn
   task_role_arn = var.role_arn
-  container_definitions = templatefile("${path.module}/task-definition.tmpl", var.task_definition_parameters)
-  network_mode = "awspvc"
-  requires_compatibilities = ["FARGATE"]
   cpu = var.cpu_units
   memory = var.memory
+  requires_compatibilities = ["FARGATE"]
+  network_mode = "awsvpc"
+  container_definitions = templatefile("${path.module}/task-definition.tmpl", var.task_definition_parameters)
 }
