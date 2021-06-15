@@ -17,12 +17,11 @@ terraform {
 }
 
 locals {
-  stack_name = "data-reconciliation"
+  stack_name = "data-reconciliation" # the service name
   stack_fullname = "${local.stack_name}-stack"
   security_group_name = "${local.stack_name}-ecs"
   ecs_service_name = "${var.environment}-${local.stack_name}"
   name_prefix = "${local.stack_name}-${var.environment}"
-  task_config_file = "${path.root}/task-definition.tmpl"
 }
 
 data "terraform_remote_state" "networks" {
@@ -66,15 +65,15 @@ locals {
     aws_region = var.aws_region
     service_name = local.stack_name
     name_prefix = local.name_prefix
-    company_count_crontab = var.company_count_crontab
-    company_collection_crontab = var.company_collection_crontab
-    dsq_officer_collection_crontab = var.dsq_officer_collection_crontab
-    company_collection_mongo_primary_crontab = var.company_collection_mongo_primary_crontab
-    company_collection_mongo_alpha_crontab = var.company_collection_mongo_alpha_crontab
-    company_name_mongo_primary_crontab = var.company_name_mongo_primary_crontab
-    company_name_mongo_alpha_crontab = var.company_name_mongo_alpha_crontab
-    company_status_mongo_primary_crontab = var.company_status_mongo_primary_crontab
-    company_status_mongo_alpha_crontab = var.company_status_mongo_alpha_crontab
+    company_count_delay = var.company_count_delay
+    company_number_mongo_oracle_delay = var.company_number_mongo_oracle_delay
+    company_number_mongo_primary_delay = var.company_number_mongo_primary_delay
+    company_number_mongo_alpha_delay = var.company_number_mongo_alpha_delay
+    disqualification_delay = var.disqualification_delay
+    company_name_mongo_primary_delay = var.company_name_mongo_primary_delay
+    company_name_mongo_alpha_delay = var.company_name_mongo_alpha_delay
+    company_status_mongo_primary_delay = var.company_status_mongo_primary_delay
+    company_status_mongo_alpha_delay = var.company_status_mongo_alpha_delay
     company_profile_db = var.company_profile_db
     company_profile_collection = var.company_profile_collection
     dsq_officer_db = var.dsq_officer_db
@@ -98,48 +97,34 @@ locals {
   }, module.secrets.secrets_arn_map)
 }
 
-module "ecs-cluster" {
-  source = "git::git@github.com:companieshouse/terraform-library-ecs-cluster.git?ref=1.1.1"
-  stack_name = local.stack_name
-  name_prefix = local.name_prefix
+module "data-reconcilliation-iam" {
+  source = "./module-iam"
+  deployment_name = local.ecs_service_name
+}
+
+module "data-reconcilliation-ecs" {
+  source = "./module-ecs"
+  role_arn = module.data-reconcilliation-iam.task_execution_role_arn
+  task_definition_parameters = local.ecs_task_config
+  cpu_units = var.cpu_units
+  memory = var.memory
+  security_group_name = local.security_group_name
+  application_name = local.stack_name
+  deployment_name = local.ecs_service_name
   environment = var.environment
-  vpc_id = data.terraform_remote_state.networks.outputs.vpc_id
-  subnet_ids = data.terraform_remote_state.networks.outputs.application_ids
-  ec2_key_pair_name = var.ec2_key_pair_name
-  ec2_instance_type = var.ec2_instance_type
-  ec2_image_id = var.ec2_image_id
-  asg_max_instance_count = 1
-  asg_min_instance_count = 1
-  asg_desired_instance_count = 1
 }
 
-resource "aws_security_group" "data-reconciliation-security-group" {
-  name = local.security_group_name
-  description = "Security group for data reconciliation"
-  egress {
-    from_port = 0
-    to_port = 0
-    protocol = "-1"
-    cidr_blocks = [
-      "0.0.0.0/0"
-    ]
-  }
-  tags = {
-    Name = local.security_group_name
-    Environment = var.environment
-    Service = local.stack_name
-  }
-}
-
-resource "aws_ecs_task_definition" "data-reconciliation-task-definition" {
-  family = local.ecs_service_name
-  execution_role_arn = module.ecs-cluster.ecs_task_execution_role_arn
-  container_definitions = templatefile(local.task_config_file, local.ecs_task_config)
-}
-
-resource "aws_ecs_service" "data-reconciliation-ecs-service" {
-  name = local.ecs_service_name
-  cluster = module.ecs-cluster.ecs_cluster_id
-  task_definition = aws_ecs_task_definition.data-reconciliation-task-definition.arn
-  desired_count = 1
+module "data-reconcilliation-cloudwatch" {
+  source = "./module-cloudwatch"
+  role_arn = module.data-reconcilliation-iam.event_target_role_arn
+  startup_expression = var.startup_expression
+  shutdown_expression = var.shutdown_expression
+  ecs_cluster_arn = module.data-reconcilliation-ecs.ecs_cluster_arn
+  ecs_task_arn = module.data-reconcilliation-ecs.ecs_task_definition_arn
+  security_groups = [module.data-reconcilliation-ecs.security_group_arn]
+  subnets = split(",", data.terraform_remote_state.networks.outputs.application_ids)
+  application_name = local.stack_name
+  deployment_name = local.ecs_service_name
+  environment = var.environment
+  security_group_name = local.security_group_name
 }

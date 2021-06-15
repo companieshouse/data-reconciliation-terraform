@@ -21,23 +21,6 @@ variable "remote_state_bucket" {
   type = string
 }
 
-variable "ec2_key_pair_name" {
-  description = "The key pair for SSH access to ec2 instances in the clusters."
-  type = string
-}
-
-variable "ec2_instance_type" {
-  description = "The instance type for ec2 instances in the clusters."
-  type = string
-  default = "z1d.large"
-}
-
-variable "ec2_image_id" {
-  description = "The machine image name for the ECS cluster launch configuration."
-  type = string
-  default = "ami-007ef488b3574da6b"
-}
-
 # Deployment
 variable "environment" {
   description = "The environment this stack will be created for."
@@ -76,48 +59,48 @@ variable "vault_password" {
 }
 
 # App configuration
-variable "company_count_crontab" {
-  description = "A crontab expression that will be used to trigger a comparison of company counts."
+variable "company_count_delay" {
+  description = "A timer delay after which a comparison of company counts will be triggered."
   type = string
 }
 
-variable "company_collection_crontab" {
-  description = "A crontab expression that will be used to trigger a comparison of company numbers."
+variable "company_number_mongo_oracle_delay" {
+  description = "A timer delay after which a comparison of company numbers will be triggered."
   type = string
 }
 
-variable "company_collection_mongo_primary_crontab" {
-  description = "A crontab expression that will be used to trigger a comparison of company numbers between MongoDB and the Elasticsearch primary index."
+variable "company_number_mongo_primary_delay" {
+  description = "A timer delay after which a comparison of company numbers between MongoDB and the Elasticsearch primary index will be triggered."
   type = string
 }
 
-variable "company_collection_mongo_alpha_crontab" {
-  description = "A crontab expression that will be used to trigger a comparison of company numbers between MongoDB and the Elasticsearch alpha index."
+variable "company_number_mongo_alpha_delay" {
+  description = "A timer delay after which a comparison of company numbers between MongoDB and the Elasticsearch alpha index will be triggered."
   type = string
 }
 
-variable "dsq_officer_collection_crontab" {
-  description = "A crontab expression that will be used to trigger a comparison of disqualified officers."
+variable "disqualification_delay" {
+  description = "A timer delay after which a comparison of disqualified officers will be triggered."
   type = string
 }
 
-variable "company_name_mongo_primary_crontab" {
-  description = "A crontab expression that will be used to trigger a comparison of company names between MongoDB and the Elasticsearch primary index."
+variable "company_name_mongo_primary_delay" {
+  description = "A timer delay after which a comparison of company names between MongoDB and the Elasticsearch primary index wil be triggered."
   type = string
 }
 
-variable "company_name_mongo_alpha_crontab" {
-  description = "A crontab expression that will be used to trigger a comparison of company names between MongoDB and the Elasticsearch alpha index."
+variable "company_name_mongo_alpha_delay" {
+  description = "A timer delay after which a comparison of company names between MongoDB and the Elasticsearch alpha index will be triggered."
   type = string
 }
 
-variable "company_status_mongo_primary_crontab" {
-  description = "A crontab expression that will be used to trigger a comparison of company statuses between MongoDB and the Elasticsearch primary index."
+variable "company_status_mongo_primary_delay" {
+  description = "A timer delay after which a comparison of company statuses between MongoDB and the Elasticsearch primary index will be triggered."
   type = string
 }
 
-variable "company_status_mongo_alpha_crontab" {
-  description = "A crontab expression that will be used to trigger a comparison of company statuses between MongoDB and the Elasticsearch alpha index."
+variable "company_status_mongo_alpha_delay" {
+  description = "A timer delay after which a comparison of company statuses between MongoDB and the Elasticsearch alpha index will be triggered."
   type = string
 }
 
@@ -219,4 +202,24 @@ variable "email_message_type" {
 variable "results_expiry_time_in_millis" {
   description = "The duration in milliseconds after which results uploaded to S3 can no longer be accessed."
   type = number
+}
+
+variable "cpu_units" {
+  description = "The number of AWS CPU units (as defined as by the ECS docs)"
+  type = number
+}
+
+variable "memory" {
+  description = "The memory in megabytes"
+  type = number
+}
+
+variable "startup_expression" {
+  description = "A cron expression indicating when the ECS task definition should be started"
+  type = string
+}
+
+variable "shutdown_expression" {
+  description = "A cron expression indicating when the ECS task definition should be stopped"
+  type = string
 }
