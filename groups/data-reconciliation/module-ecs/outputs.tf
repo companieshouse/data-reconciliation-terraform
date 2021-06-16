@@ -8,7 +8,7 @@ output "ecs_task_definition_arn" {
   value       = aws_ecs_task_definition.data-reconciliation-task-definition.arn
 }
 
-output "security_group_arn" {
-  description = "The ARN of the security group defined for ECS"
-  value       = aws_security_group.data-reconciliation-security-group.arn
+output "security_group_id" {
+  description = "The ID of the security group defined for ECS"
+  value       = aws_security_group.data-reconciliation-security-group.id
 }

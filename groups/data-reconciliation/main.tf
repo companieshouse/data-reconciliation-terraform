@@ -120,7 +120,7 @@ module "data-reconcilliation-cloudwatch" {
   startup_expression = var.startup_expression
   ecs_cluster_arn = module.data-reconcilliation-ecs.ecs_cluster_arn
   ecs_task_arn = module.data-reconcilliation-ecs.ecs_task_definition_arn
-  security_groups = [module.data-reconcilliation-ecs.security_group_arn]
+  security_groups = [module.data-reconcilliation-ecs.security_group_id]
   subnets = split(",", data.terraform_remote_state.networks.outputs.application_ids)
   application_name = local.stack_name
   deployment_name = local.ecs_service_name
