@@ -1,0 +1,22 @@
+aws_bucket = "live-eu-west-2.terraform-state.ch.gov.uk"
+remote_state_bucket = "ch-service-live-terraform-state"
+environment = "live"
+deploy_to = "live"
+state_prefix = "env:/live"
+aws_profile = "live-eu-west-2"
+cpu_units = 1024
+memory = 8192
+startup_expression = "cron(0/15 6-17 ? * MON-FRI *)"
+
+company_count_delay = "0"
+company_number_mongo_oracle_delay = "30s"
+company_number_mongo_primary_delay = "0"
+company_number_mongo_alpha_delay = "30s"
+disqualification_delay = "0"
+company_name_mongo_primary_delay = "1m"
+company_name_mongo_alpha_delay = "1m30s"
+company_status_mongo_primary_delay = "2m"
+company_status_mongo_alpha_delay = "2m30s"
+
+results_initial_capacity = 1000000
+results_expiry_time_in_millis = 1800000 # 30 minutes
