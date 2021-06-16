@@ -118,7 +118,6 @@ module "data-reconcilliation-cloudwatch" {
   source = "./module-cloudwatch"
   role_arn = module.data-reconcilliation-iam.event_target_role_arn
   startup_expression = var.startup_expression
-  shutdown_expression = var.shutdown_expression
   ecs_cluster_arn = module.data-reconcilliation-ecs.ecs_cluster_arn
   ecs_task_arn = module.data-reconcilliation-ecs.ecs_task_definition_arn
   security_groups = [module.data-reconcilliation-ecs.security_group_arn]
