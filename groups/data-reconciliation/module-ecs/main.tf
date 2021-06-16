@@ -1,6 +1,7 @@
 resource "aws_security_group" "data-reconciliation-security-group" {
   name = var.security_group_name
   description = "Security group for data reconciliation"
+  vpc_id = var.vpc_id
   egress {
     from_port = 0
     to_port = 0
