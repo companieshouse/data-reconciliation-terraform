@@ -218,8 +218,3 @@ variable "startup_expression" {
   description = "A cron expression indicating when the ECS task definition should be started"
   type = string
 }
-
-variable "shutdown_expression" {
-  description = "A cron expression indicating when the ECS task definition should be stopped"
-  type = string
-}
