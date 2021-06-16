@@ -104,6 +104,7 @@ module "data-reconcilliation-iam" {
 
 module "data-reconcilliation-ecs" {
   source = "./module-ecs"
+  vpc_id = data.terraform_remote_state.networks.outputs.vpc_id
   role_arn = module.data-reconcilliation-iam.task_execution_role_arn
   task_definition_parameters = local.ecs_task_config
   cpu_units = var.cpu_units

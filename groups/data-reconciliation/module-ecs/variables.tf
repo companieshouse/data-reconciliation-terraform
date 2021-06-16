@@ -37,3 +37,8 @@ variable "deployment_name" {
   description = "A name identifying the application on the environment that it is deployed to"
   type        = string
 }
+
+variable "vpc_id" {
+  description = "The ID of the VPC that the security group will be part of"
+  type        = string
+}
