@@ -17,6 +17,7 @@ company_name_mongo_primary_delay = "1m"
 company_name_mongo_alpha_delay = "1m30s"
 company_status_mongo_primary_delay = "2m"
 company_status_mongo_alpha_delay = "2m30s"
+company_status_mongo_oracle_delay = "3m"
 
 results_initial_capacity = 1000000
 results_expiry_time_in_millis = 1800000 # 30 minutes

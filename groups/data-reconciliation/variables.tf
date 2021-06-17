@@ -104,6 +104,11 @@ variable "company_status_mongo_alpha_delay" {
   type = string
 }
 
+variable "company_status_mongo_oracle_delay" {
+  description = "A timer delay after which a comparison of company statuses between MongoDB and Oracle will be triggered."
+  type = string
+}
+
 variable "company_profile_db" {
   description = "The name of the MongoDB database used to store company profile documents."
   type = string
