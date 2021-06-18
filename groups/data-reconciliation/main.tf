@@ -19,9 +19,8 @@ terraform {
 locals {
   stack_name = "data-reconciliation" # the service name
   stack_fullname = "${local.stack_name}-stack"
-  security_group_name = "${local.stack_name}-ecs"
-  ecs_service_name = "${var.environment}-${local.stack_name}"
   name_prefix = "${local.stack_name}-${var.environment}"
+  security_group_name = "${local.name_prefix}-ecs"
 }
 
 data "terraform_remote_state" "networks" {
@@ -100,7 +99,7 @@ locals {
 
 module "data-reconcilliation-iam" {
   source = "./module-iam"
-  deployment_name = local.ecs_service_name
+  deployment_name = local.name_prefix
 }
 
 module "data-reconcilliation-ecs" {
@@ -112,7 +111,7 @@ module "data-reconcilliation-ecs" {
   memory = var.memory
   security_group_name = local.security_group_name
   application_name = local.stack_name
-  deployment_name = local.ecs_service_name
+  deployment_name = local.name_prefix
   environment = var.environment
 }
 
@@ -125,7 +124,7 @@ module "data-reconcilliation-cloudwatch" {
   security_groups = [module.data-reconcilliation-ecs.security_group_id]
   subnets = split(",", data.terraform_remote_state.networks.outputs.application_ids)
   application_name = local.stack_name
-  deployment_name = local.ecs_service_name
+  deployment_name = local.name_prefix
   environment = var.environment
   security_group_name = local.security_group_name
 }
