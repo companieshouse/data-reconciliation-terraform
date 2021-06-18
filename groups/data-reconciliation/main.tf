@@ -84,6 +84,7 @@ locals {
     company_status_mongo_primary_enabled = var.company_status_mongo_primary_enabled
     company_status_mongo_alpha_enabled = var.company_status_mongo_alpha_enabled
     company_status_mongo_oracle_enabled = var.company_status_mongo_oracle_enabled
+    insolvency_company_number_delay = var.insolvency_company_number_delay
     company_profile_db = var.company_profile_db
     company_profile_collection = var.company_profile_collection
     dsq_officer_db = var.dsq_officer_db
