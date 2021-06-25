@@ -59,13 +59,13 @@ variable "vault_password" {
 }
 
 # App configuration
-variable "company_count_delay" {
-  description = "A timer delay after which a comparison of company counts will be triggered."
+variable "company_count_mongo_oracle_delay" {
+  description = "A timer delay after which a comparison of company counts between MongoDB and Oracle will be triggered."
   type = string
 }
 
 variable "company_number_mongo_oracle_delay" {
-  description = "A timer delay after which a comparison of company numbers will be triggered."
+  description = "A timer delay after which a comparison of company numbers between MongoDB and Oracle will be triggered."
   type = string
 }
 
@@ -79,8 +79,8 @@ variable "company_number_mongo_alpha_delay" {
   type = string
 }
 
-variable "disqualification_delay" {
-  description = "A timer delay after which a comparison of disqualified officers will be triggered."
+variable "dsq_officer_id_mongo_oracle_delay" {
+  description = "A timer delay after which a comparison of disqualified officer ids between MongoDB and Oracle will be triggered."
   type = string
 }
 
@@ -107,6 +107,56 @@ variable "company_status_mongo_alpha_delay" {
 variable "company_status_mongo_oracle_delay" {
   description = "A timer delay after which a comparison of company statuses between MongoDB and Oracle will be triggered."
   type = string
+}
+
+variable "company_count_mongo_oracle_enabled" {
+  description = "A toggle to control comparison of company counts between MongoDB and Oracle."
+  type = bool
+}
+
+variable "company_number_mongo_oracle_enabled" {
+  description = "A toggle to control comparison of company numbers between MongoDB and Oracle."
+  type = bool
+}
+
+variable "company_number_mongo_primary_enabled" {
+  description = "A toggle to control comparison of company numbers between MongoDB and the Elasticsearch primary index."
+  type = bool
+}
+
+variable "company_number_mongo_alpha_enabled" {
+  description = "A toggle to control comparison of company numbers between MongoDB and the Elasticsearch alpha index."
+  type = bool
+}
+
+variable "dsq_officer_id_mongo_oracle_enabled" {
+  description = "A toggle to control comparison of disqualified officer ids between MongoDB and Oracle."
+  type = bool
+}
+
+variable "company_name_mongo_primary_enabled" {
+  description = "A toggle to control comparison of company names between MongoDB and the Elasticsearch primary index wil be triggered."
+  type = bool
+}
+
+variable "company_name_mongo_alpha_enabled" {
+  description = "A toggle to control comparison of company names between MongoDB and the Elasticsearch alpha index."
+  type = bool
+}
+
+variable "company_status_mongo_primary_enabled" {
+  description = "A toggle to control comparison of company statuses between MongoDB and the Elasticsearch primary index."
+  type = bool
+}
+
+variable "company_status_mongo_alpha_enabled" {
+  description = "A toggle to control comparison of company statuses between MongoDB and the Elasticsearch alpha index."
+  type = bool
+}
+
+variable "company_status_mongo_oracle_enabled" {
+  description = "A toggle to control comparison of company statuses between MongoDB and Oracle."
+  type = bool
 }
 
 variable "company_profile_db" {
