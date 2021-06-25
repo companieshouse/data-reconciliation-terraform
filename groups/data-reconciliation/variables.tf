@@ -109,6 +109,16 @@ variable "company_status_mongo_oracle_delay" {
   type = string
 }
 
+variable "insolvency_company_number_mongo_oracle_delay" {
+  description = "A timer delay after which a comparison of company numbers with insolvency cases between MongoDB and Oracle will be triggered."
+  type = string
+}
+
+variable "insolvency_case_count_mongo_oracle_delay" {
+  description = "A timer delay after which a comparison of insolvency case counts between MongoDB and Oracle will be triggered."
+  type = string
+}
+
 variable "company_count_mongo_oracle_enabled" {
   description = "A toggle to control comparison of company counts between MongoDB and Oracle."
   type = bool
@@ -159,6 +169,16 @@ variable "company_status_mongo_oracle_enabled" {
   type = bool
 }
 
+variable insolvency_company_number_mongo_oracle_enabled {
+  description = "A toggle to control comparison of company numbers with insolvency cases between MongoDB and Oracle."
+  type = bool
+}
+
+variable insolvency_case_count_mongo_oracle_enabled {
+  description = "A toggle to control comparison of insolvency case counts between MongoDB and Oracle."
+  type = bool
+}
+
 variable "company_profile_db" {
   description = "The name of the MongoDB database used to store company profile documents."
   type = string
@@ -181,6 +201,18 @@ variable "dsq_officer_collection" {
   description = "The name of the MongoDB collection used to store disqualification documents."
   type = string
   default = "disqualifications"
+}
+
+variable "insolvency_db" {
+  description = "The name of the MongoDB database used to store insolvency documents."
+  type = string
+  default = "company_insolvency"
+}
+
+variable "insolvency_collection" {
+  description = "The name of the MongoDB collection used to store insolvency documents."
+  type = string
+  default = "company_insolvency"
 }
 
 variable "jdbc_driver" {
