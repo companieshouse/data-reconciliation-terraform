@@ -74,6 +74,8 @@ locals {
     company_status_mongo_primary_delay = var.company_status_mongo_primary_delay
     company_status_mongo_alpha_delay = var.company_status_mongo_alpha_delay
     company_status_mongo_oracle_delay = var.company_status_mongo_oracle_delay
+    insolvency_company_number_mongo_oracle_delay = var.insolvency_company_number_mongo_oracle_delay
+    insolvency_case_count_mongo_oracle_delay = var.insolvency_case_count_mongo_oracle_delay
     company_count_mongo_oracle_enabled = var.company_count_mongo_oracle_enabled
     company_number_mongo_oracle_enabled = var.company_number_mongo_oracle_enabled
     company_number_mongo_primary_enabled = var.company_number_mongo_primary_enabled
@@ -84,11 +86,14 @@ locals {
     company_status_mongo_primary_enabled = var.company_status_mongo_primary_enabled
     company_status_mongo_alpha_enabled = var.company_status_mongo_alpha_enabled
     company_status_mongo_oracle_enabled = var.company_status_mongo_oracle_enabled
-    insolvency_company_number_delay = var.insolvency_company_number_delay
+    insolvency_company_number_mongo_oracle_enabled = var.insolvency_company_number_mongo_oracle_enabled
+    insolvency_case_count_mongo_oracle_enabled = var.insolvency_case_count_mongo_oracle_enabled
     company_profile_db = var.company_profile_db
     company_profile_collection = var.company_profile_collection
     dsq_officer_db = var.dsq_officer_db
     dsq_officer_collection = var.dsq_officer_collection
+    insolvency_db = var.insolvency_db
+    insolvency_collection = var.insolvency_collection
     jdbc_driver = var.jdbc_driver
     mongodb_read_preference = var.mongodb_read_preference
     elasticsearch_primary_segments = var.elasticsearch_primary_segments
