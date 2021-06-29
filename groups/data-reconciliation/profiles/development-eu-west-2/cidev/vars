@@ -6,7 +6,7 @@ state_prefix = "env:/development"
 aws_profile = "development-eu-west-2"
 cpu_units = 1024
 memory = 8192
-startup_expression = "cron(0 6-17 ? * MON-FRI *)"
+startup_expression = "cron(0/15 6-17 ? * MON-FRI *)"
 
 company_count_mongo_oracle_delay = "0"
 company_number_mongo_oracle_delay = "30s"
@@ -25,13 +25,13 @@ company_count_mongo_oracle_enabled = true
 company_number_mongo_oracle_enabled = true
 company_number_mongo_primary_enabled = true
 company_number_mongo_alpha_enabled = true
-dsq_officer_id_mongo_oracle_enabled = true
+dsq_officer_id_mongo_oracle_enabled = false
 company_name_mongo_primary_enabled = true
 company_name_mongo_alpha_enabled = true
-company_status_mongo_primary_enabled = true
+company_status_mongo_primary_enabled = false
 company_status_mongo_alpha_enabled = true
-company_status_mongo_oracle_enabled = true
-insolvency_company_number_mongo_oracle_enabled = true
+company_status_mongo_oracle_enabled = false
+insolvency_company_number_mongo_oracle_enabled = false
 insolvency_case_count_mongo_oracle_enabled = true
 
 results_initial_capacity = 1000000
