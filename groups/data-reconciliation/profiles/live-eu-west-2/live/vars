@@ -1,0 +1,40 @@
+aws_bucket = "live-eu-west-2.terraform-state.ch.gov.uk"
+remote_state_bucket = "ch-service-live-terraform-state"
+environment = "live"
+deploy_to = "live"
+state_prefix = "env:/live"
+aws_profile = "live-eu-west-2"
+cpu_units = 1024
+memory = 8192
+startup_expression = "cron(0 18 ? * MON-FRI *)" # BI-8390 - support availability and pre overnight-jobs
+
+company_count_mongo_oracle_delay = "0"
+company_number_mongo_oracle_delay = "30s"
+company_number_mongo_primary_delay = "0"
+company_number_mongo_alpha_delay = "30s"
+dsq_officer_id_mongo_oracle_delay = "0"
+company_name_mongo_primary_delay = "1m"
+company_name_mongo_alpha_delay = "1m30s"
+company_status_mongo_primary_delay = "2m"
+company_status_mongo_alpha_delay = "2m30s"
+company_status_mongo_oracle_delay = "3m"
+insolvency_company_number_mongo_oracle_delay = "0"
+insolvency_case_count_mongo_oracle_delay = "0"
+
+company_count_mongo_oracle_enabled = false
+company_number_mongo_oracle_enabled = false
+company_number_mongo_primary_enabled = false
+company_number_mongo_alpha_enabled = false
+dsq_officer_id_mongo_oracle_enabled = true
+company_name_mongo_primary_enabled = false
+company_name_mongo_alpha_enabled = false
+company_status_mongo_primary_enabled = false
+company_status_mongo_alpha_enabled = false
+company_status_mongo_oracle_enabled = false
+insolvency_company_number_mongo_oracle_enabled = false
+insolvency_case_count_mongo_oracle_enabled = false
+
+mongodb_read_preference = "SECONDARY"
+
+results_initial_capacity = 1000000
+results_expiry_time_in_millis = 86400000 # 1 day
