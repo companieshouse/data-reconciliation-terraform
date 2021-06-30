@@ -31,8 +31,8 @@ company_name_mongo_alpha_enabled = false
 company_status_mongo_primary_enabled = false
 company_status_mongo_alpha_enabled = false
 company_status_mongo_oracle_enabled = false
-insolvency_company_number_mongo_oracle_enabled = true
-insolvency_case_count_mongo_oracle_enabled = false
+insolvency_company_number_mongo_oracle_enabled = false
+insolvency_case_count_mongo_oracle_enabled = true
 
 results_initial_capacity = 1000000
 results_expiry_time_in_millis = 1800000 # 30 minutes
