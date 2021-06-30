@@ -23,10 +23,10 @@ insolvency_case_count_mongo_oracle_delay = "0"
 
 company_count_mongo_oracle_enabled = false
 company_number_mongo_oracle_enabled = false
-company_number_mongo_primary_enabled = true
+company_number_mongo_primary_enabled = false
 company_number_mongo_alpha_enabled = false
 dsq_officer_id_mongo_oracle_enabled = false
-company_name_mongo_primary_enabled = false
+company_name_mongo_primary_enabled = true
 company_name_mongo_alpha_enabled = false
 company_status_mongo_primary_enabled = false
 company_status_mongo_alpha_enabled = false
