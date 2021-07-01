@@ -59,6 +59,14 @@ resource "aws_s3_bucket" "data-reconciliation-bucket" {
   acl = "private"
 }
 
+module "data-reconcilliation-iam" {
+  source = "./module-iam"
+  deployment_name = local.name_prefix
+  environment = var.environment
+  service-name = local.stack_name
+  result_bucket_arn = aws_s3_bucket.data-reconciliation-bucket.arn
+}
+
 locals {
   ecs_task_config = merge({
     aws_region = var.aws_region
@@ -108,14 +116,11 @@ locals {
     email_message_id = var.email_message_id
     email_message_type = var.email_message_type
     results_expiry_time_in_millis = var.results_expiry_time_in_millis
+    access_key_id = module.data-reconcilliation-iam.access_key_id
+    secret_access_key = module.data-reconcilliation-iam.secret_access_key
     docker_registry = var.docker_registry
     release_version = var.release_version
   }, module.secrets.secrets_arn_map)
-}
-
-module "data-reconcilliation-iam" {
-  source = "./module-iam"
-  deployment_name = local.name_prefix
 }
 
 module "data-reconcilliation-ecs" {
