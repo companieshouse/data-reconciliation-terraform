@@ -8,7 +8,6 @@ variable "aws_region" {
 variable "aws_profile" {
   description = "The AWS profile to use for deployment."
   type = string
-  default = "development-eu-west-2"
 }
 
 variable "aws_bucket" {
