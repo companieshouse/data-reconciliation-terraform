@@ -44,7 +44,10 @@
       { "name": "EMAIL_APPLICATION_ID", "value": "${email_application_id}" },
       { "name": "EMAIL_MESSAGE_ID", "value": "${email_message_id}" },
       { "name": "EMAIL_MESSAGE_TYPE", "value": "${email_message_type}" },
-      { "name": "RESULTS_EXPIRY_TIME_IN_MILLIS", "value": "${results_expiry_time_in_millis}" }
+      { "name": "RESULTS_EXPIRY_TIME_IN_MILLIS", "value": "${results_expiry_time_in_millis}" },
+      { "name": "AWS_ACCESS_KEY_ID", "value": "${access_key_id}"},
+      { "name": "AWS_SECRET_ACCESS_KEY", "value": "${secret_access_key}"},
+      { "name": "AWS_REGION", "value": "${aws_region}"}
     ],
     "name": "${service_name}",
     "image": "${docker_registry}/${service_name}:${release_version}",
@@ -73,10 +76,7 @@
       { "name": "EMAIL_RECIPIENT_LIST", "valueFrom": "${data-reconciliation-secret-email-recipient-list}" },
       { "name": "EMAIL_SENDER", "valueFrom": "${data-reconciliation-secret-email-sender}" },
       { "name": "SCHEMA_REGISTRY_URL", "valueFrom": "${data-reconciliation-schema-registry-url}" },
-      { "name": "KAFKA_BROKER_ADDR", "valueFrom": "${data-reconciliation-secret-kafka-broker-addr}" },
-      { "name": "AWS_ACCESS_KEY_ID", "valueFrom": "${data-reconciliation-secret-aws-access-key-id}"},
-      { "name": "AWS_SECRET_ACCESS_KEY", "valueFrom": "${data-reconciliation-secret-aws-secret-access-key}"},
-      { "name": "AWS_REGION", "valueFrom": "${data-reconciliation-secret-aws-region}"}
+      { "name": "KAFKA_BROKER_ADDR", "valueFrom": "${data-reconciliation-secret-kafka-broker-addr}" }
     ]
   }
 ]
