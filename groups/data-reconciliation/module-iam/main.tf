@@ -86,7 +86,7 @@ data "aws_iam_policy_document" "cloudwatch-policy" {
 # IAM user responsible for uploading results to S3
 resource "aws_iam_user" "iam-user" {
   name = "${var.deployment_name}-iam"
-  path = "/applications/${var.service-name}/${var.environment}"
+  path = "/applications/datarecon/${var.environment}"
   tags = {
     Name = "${var.deployment_name}-iam"
     Environment = var.environment
