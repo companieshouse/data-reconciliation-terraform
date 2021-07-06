@@ -38,3 +38,5 @@ mongodb_read_preference = "SECONDARY"
 
 results_initial_capacity = 1000000
 results_expiry_time_in_millis = 3600000 # 1 hour
+cache_expiry_in_seconds = 1800
+java_mem_args = "-Xmx14g"

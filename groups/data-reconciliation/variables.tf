@@ -290,6 +290,16 @@ variable "results_expiry_time_in_millis" {
   type = number
 }
 
+variable "cache_expiry_in_seconds" {
+  description = "The duration in seconds which is set for when the cache should expire."
+  type = number
+}
+
+variable "java_mem_args" {
+  description = "The memory designated for controlling the heap size to control the RAM usage in java applications."
+  type = string
+}
+
 variable "cpu_units" {
   description = "The number of AWS CPU units (as defined as by the ECS docs)"
   type = number

@@ -47,7 +47,9 @@
       { "name": "RESULTS_EXPIRY_TIME_IN_MILLIS", "value": "${results_expiry_time_in_millis}" },
       { "name": "AWS_ACCESS_KEY_ID", "value": "${access_key_id}"},
       { "name": "AWS_SECRET_ACCESS_KEY", "value": "${secret_access_key}"},
-      { "name": "AWS_REGION", "value": "${aws_region}"}
+      { "name": "AWS_REGION", "value": "${aws_region}"},
+      { "name": "CACHE_EXPIRY_IN_SECONDS", "value": "${cache_expiry_in_seconds}"},
+      { "name": "JAVA_MEM_ARGS", "value": "${java_mem_args}"}
     ],
     "name": "${service_name}",
     "image": "${docker_registry}/${service_name}:${release_version}",
