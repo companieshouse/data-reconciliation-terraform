@@ -111,6 +111,8 @@ locals {
     elasticsearch_alpha_slice_size = var.elasticsearch_alpha_slice_size
     elasticsearch_alpha_slice_field = var.elasticsearch_alpha_slice_field
     results_initial_capacity = var.results_initial_capacity
+    cache_expiry_in_seconds = var.cache_expiry_in_seconds
+    java_mem_args = var.java_mem_args
     results_bucket = local.name_prefix
     email_application_id = var.email_application_id
     email_message_id = var.email_message_id

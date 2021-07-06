@@ -5,7 +5,7 @@ deploy_to = "staging"
 state_prefix = "env:/staging"
 aws_profile = "staging-eu-west-2"
 cpu_units = 2048
-memory = 16384
+memory = 30720
 startup_expression = "cron(0 6-17 ? * MON-FRI *)"
 
 company_count_mongo_oracle_delay = "0"
@@ -38,3 +38,5 @@ mongodb_read_preference = "SECONDARY"
 
 results_initial_capacity = 1000000
 results_expiry_time_in_millis = 3600000 # 1 hour
+cache_expiry_in_seconds = 1800
+java_mem_args = "-Xmx14336m"
