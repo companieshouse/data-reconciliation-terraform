@@ -57,6 +57,7 @@ module "secrets" {
 resource "aws_s3_bucket" "data-reconciliation-bucket" {
   bucket = local.name_prefix
   acl = "private"
+  force_destroy = true
 }
 
 module "data-reconcilliation-iam" {
