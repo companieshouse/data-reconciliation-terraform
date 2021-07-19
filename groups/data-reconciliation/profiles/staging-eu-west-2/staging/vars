@@ -6,7 +6,7 @@ state_prefix = "env:/staging"
 aws_profile = "staging-eu-west-2"
 cpu_units = 2048
 memory = 16384
-startup_expression = "cron(30 16 ? * MON-FRI *)"
+startup_expression = "cron(30 10 ? * MON-FRI *)"
 
 company_count_mongo_oracle_delay = "0"
 company_number_mongo_oracle_delay = "0"
