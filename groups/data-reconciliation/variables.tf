@@ -229,7 +229,7 @@ variable "mongodb_read_preference" {
 variable "elasticsearch_primary_segments" {
   description = "The number of segments scrolling searches will be split into."
   type = number
-  default = 3
+  default = 1
 }
 
 variable "elasticsearch_primary_slice_size" {
@@ -247,7 +247,7 @@ variable "elasticsearch_primary_slice_field" {
 variable "elasticsearch_alpha_segments" {
   description = "The number of segments scrolling searches will be split into."
   type = number
-  default = 3
+  default = 1
 }
 
 variable "elasticsearch_alpha_slice_size" {
