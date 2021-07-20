@@ -4,7 +4,7 @@ environment = "staging"
 deploy_to = "staging"
 state_prefix = "env:/staging"
 aws_profile = "staging-eu-west-2"
-cpu_units = 2048
+cpu_units = 4096
 memory = 20480
 startup_expression = "cron(0 6-17 ? * MON-FRI *)"
 
