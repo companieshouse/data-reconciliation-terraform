@@ -4,7 +4,7 @@ environment = "live"
 deploy_to = "live"
 state_prefix = "env:/live"
 aws_profile = "live-eu-west-2"
-cpu_units = 4096
+cpu_units = 5120
 memory = 20480
 startup_expression = "cron(0 18 ? * MON-FRI *)" # BI-8390 - support availability and pre overnight-jobs
 
