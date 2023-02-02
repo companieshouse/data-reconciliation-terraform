@@ -4,8 +4,8 @@ environment = "live"
 deploy_to = "live"
 state_prefix = "env:/live"
 aws_profile = "live-eu-west-2"
-cpu_units = 5120
-memory = 20480
+cpu_units = 4096
+memory = 26624
 startup_expression = "cron(0 18 ? * MON-FRI *)" # BI-8390 - support availability and pre overnight-jobs
 
 company_count_mongo_oracle_delay = "0"
@@ -39,4 +39,4 @@ mongodb_read_preference = "SECONDARY"
 results_initial_capacity = 1000000
 results_expiry_time_in_millis = 86400000 # 1 day
 cache_expiry_in_seconds = 3600
-java_mem_args = "-Xms10g -Xmx18g"
+java_mem_args = "-Xms14g -Xmx24g"
