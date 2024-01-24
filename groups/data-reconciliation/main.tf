@@ -21,6 +21,11 @@ locals {
   stack_fullname = "${local.stack_name}-stack"
   name_prefix = "${local.stack_name}-${var.environment}"
   security_group_name = "${local.name_prefix}-ecs"
+
+  aws_credentials = {
+    aws_access_key_id     = module.data-reconcilliation-iam.access_key_id
+    aws_secret_access_key = module.data-reconcilliation-iam.secret_access_key
+  }
 }
 
 data "terraform_remote_state" "networks" {
@@ -51,13 +56,21 @@ module "secrets" {
   name_prefix = local.name_prefix
   environment = var.environment
   kms_key_id = data.terraform_remote_state.services-stack-configs.outputs.services_stack_configs_kms_key_id
-  secrets = data.vault_generic_secret.secrets.data
+  secrets = merge(data.vault_generic_secret.secrets.data, local.aws_credentials)
 }
 
 resource "aws_s3_bucket" "data-reconciliation-bucket" {
   bucket = local.name_prefix
   acl = "private"
   force_destroy = true
+
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        sse_algorithm = "AES256"
+      }
+    }
+  }
 }
 
 module "data-reconcilliation-iam" {
@@ -119,8 +132,6 @@ locals {
     email_message_id = var.email_message_id
     email_message_type = var.email_message_type
     results_expiry_time_in_millis = var.results_expiry_time_in_millis
-    access_key_id = module.data-reconcilliation-iam.access_key_id
-    secret_access_key = module.data-reconcilliation-iam.secret_access_key
     docker_registry = var.docker_registry
     release_version = var.release_version
   }, module.secrets.secrets_arn_map)
